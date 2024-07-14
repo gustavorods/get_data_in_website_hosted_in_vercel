@@ -10,6 +10,22 @@
 <input type="text" id="input">
 <button type="button" id="button">GET DATA</button>
 
-<script src="./script.js"></script>
+<script>
+    const baseUrl = window.location.origin;
+
+    const input = document.getElementById("input");
+    const button = document.getElementById("button");
+
+    const responseAPI = async (e) => {
+        e.preventDefault()
+        const res = await fetch(`${baseUrl}/message`, { // URL relativa ao domínio atual
+            method: 'GET'
+        })
+        const data = await res.json();
+        input.value = data.message;
+    };
+
+button.addEventListener("click", responseAPI);
+</script>
 </body>
 </html>
